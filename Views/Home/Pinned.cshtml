@@ -1,0 +1,35 @@
+﻿@model IEnumerable<NotesAPP.Models.Note>
+ 
+<div class="profileInfo">
+    <div class="profileImg">
+        <img src="~/lib/img/catProfileImg.jpg" alt="photoProfile" />
+    </div>
+
+    <h1 class="profileName">Shifter_24</h1>
+</div>
+
+<a asp-action="Index">
+    <div class="myNotes btnPanel">
+        <i class="fa-regular fa-note-sticky"></i>
+        <h1>My Notes</h1>
+    </div>
+</a>
+            
+<a asp-action="Pinned">
+    <div class="pinned btnPanel activeBtn">
+        <i class="fa-solid fa-thumbtack"></i>
+        <h1>Pinned</h1>
+    </div>
+</a>
+
+<div style="display: none" class="journal btnPanel">
+    <span class="iconify-inline" data-icon="healthicons:i-note-action"></span>
+    <h1>Journal</h1>
+</div>
+
+<div class="settings btnPanel">
+    <span class="iconify-inline" data-icon="akar-icons:gear"></span>
+    <h1>Settings</h1>
+</div>
+
+ 

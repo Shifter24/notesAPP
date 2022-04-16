@@ -1,0 +1,162 @@
+﻿@model IEnumerable<NotesAPP.Models.Note>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] NotesAPP</title>
+    <link href="~/css/Style.css" rel="stylesheet" />
+    <link href="~/lib/icons/fontawesome-free-6.1.0-web/fontawesome-free-6.1.0-web/css/all.min.css" rel="stylesheet" />
+    <script src="https://code.iconify.design/2/2.2.0/iconify.min.js"></script>
+    <!--Montserrat Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="pageContainer">
+
+        <!--  MENU PANEL LEFT  -->
+
+        <div class="panelOptions">
+            @RenderBody()
+        </div>
+
+        <div class="notesContainerAll">
+
+            <!--  NAV BAR NOTES  -->
+
+            <nav class="navBarNotes">
+                <div class="contNotesQty">
+                    <h1>Notes Quantity</h1>
+                    <div class="xTimeShowNote">
+                        <select class="cantNotesPage">
+                            <option value="value">1</option>
+                            <option value="value">2</option>
+                            <option value="value">3</option>
+                            <option value="value">4</option>
+                            <option value="value">5</option>
+                            <option value="value">6</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="contSearchBar">
+                    <input class="searchBarNote" type="text" name="name" value="" placeholder="Search..." />
+                    <div class="containerSearchIcon">
+                        <span class="iconify-inline" data-icon="ant-design:search-outlined"></span>
+                    </div>
+
+                </div>
+            </nav>
+
+            <!--  CONTAINER NOTES  -->
+
+            <div class="containerNotes">
+
+                @foreach (var x in Model)
+                {
+                    <div class="noteBox">
+                        <div id="notePinned" class="notePinned">
+                            <span class="iconify-inline pinOrNo" data-icon="noto:pushpin"></span>
+                        </div>
+                        <p class="noteId">@x.Id</p>
+                        <div class="noteTitle"><h2>@x.Title</h2></div>
+                        <div class="noteDescr"><p>@x.Desc</p></div>
+                        <p class="noteSelected">@x.Pinned</p>
+                        <div class="timeAndDelete">
+
+                            <p>@x.Created_at</p>
+
+                            <div class="noteDelete">
+                                <form method="post">
+                                    <input type="text" name="Id" value="@x.Id" />
+                                    <button type="submit" asp-action="DeleteNote">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+
+        </div><!--End Notes Container ALL-->
+        <!--  MENU OPTIONS RIGHT  -->
+
+        <div class="containerRightMenu">
+            <div class="contDelBtn optionRight">
+                <span class="iconify-inline" data-icon="carbon:delete"></span>
+                <h2>Delete Note</h2>
+            </div>
+        </div>
+
+
+        <!--  CREATE NOTE PANEL  -->
+
+        <form id="containerNotePanel" class="containerNotePanel" method="post">
+            <div class="notePanel">
+
+                <div class="contPinAndXPanel">
+                    <div class="animationPinNote">
+                        <span class="iconify-inline" data-icon="noto:pushpin"></span>
+                    </div>
+
+                    <div id="closeNoteX" class="closeNoteX">
+                        <span class="iconify-inline" data-icon="bi:x"></span>
+                    </div>
+                </div>
+
+                <input id="noteIdPanel" type="text" name="Id" value="" />
+
+                <div class="noteTitlePanel">
+                    <input id="noteTitle" type="text" name="Title" value="" placeholder="Title..." />
+                </div>
+
+                <div class="noteDescrPanel">
+                    <textarea id="noteDescr" name="Desc" placeholder="Description..."></textarea>
+                </div>
+
+            </div>
+
+            <div class="notePanelOptions">
+                <div class="togglePin">
+                    <span class="iconify-inline" data-icon="bi:pin-fill"></span>
+                    <label class="switch">
+                        <input id="checkBoxPin" name="Pinned" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="createBtnPanel" id="createBtnPanel">
+                    <button type="submit" asp-action="CreateNote">Create</button>
+                </div>
+
+                <div class="createBtnPanel" id="editBtnPanel">
+                    <button type="submit" asp-action="EditNote">Edit</button>
+                </div>
+
+            </div>
+        </form>
+
+        <!--  ADD NOTE BTN  -->
+
+        <div class="addNoteBtn">
+            <div class="containPlusAddNote">
+                <span class="iconify-inline" data-icon="akar-icons:plus"></span>
+                <div id="contTxtAddNote" class="contTxtAddNote">
+                    <h1>Add Note</h1>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="barBottom"></div>
+
+    </div><!--End Page Container-->
+
+
+    <script src="~/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,615 @@
+﻿/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+/*Personalize ScrollBar*/
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+/*------------INIT CONFIG--------------*/
+
+:root {
+    /*Colors*/
+    --bodyColorLight: #F7B2AD;
+    --panelColorLight: #212121;
+    --colorBlue: #6DAEDB;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /*Fonts*/
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: var(--bodyColorLight);
+}
+
+.pageContainer {
+    display:flex;
+    position: relative;
+}
+/*------------PANEL OPTIONS------------*/
+.panelOptions {
+    position: fixed;
+    width: 20%;
+    height: 100%;
+    background-color: var(--panelColorLight);
+    z-index: 1;
+}
+
+.btnPanel {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    padding:0 80px 0 80px;
+    justify-content:space-between;
+    align-items: center;
+    background-color: #333232;
+    color: var(--bodyColorLight);
+    border-right: 2px solid var(--bodyColorLight);
+    font-size: 14px;
+    transition: .5s ease;
+}
+
+    .btnPanel:not(.activeBtn):hover {
+        border-right: 6px solid var(--bodyColorLight);
+        background-color: #101010;
+        color: white;
+    }
+
+.activeBtn {
+    color:#111;
+    background-color: var(--bodyColorLight);
+}
+
+
+.profileInfo {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10% 0 10%;
+    font-size:15px;
+    color: #FFFFFF;
+}
+    .profileImg {
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        width:120px;
+        height:120px;
+        border-radius:50%;
+    }
+
+        .profileInfo h1 {
+            font-weight: 400;
+        }
+
+
+.myNotes {
+    margin-bottom: 30px;
+}
+
+    .myNotes i {
+        font-size:2rem;
+    }
+
+.pinned {
+    margin-bottom: 30px;
+}
+
+    .pinned i {
+        font-size:2rem;
+    }
+
+.journal .iconify-inline {
+    font-size: 2.6rem;
+}
+
+.settings {
+    margin-top: 200px;
+}
+
+    .settings .iconify-inline {
+        font-size:2rem;
+    }
+
+/*-----------CONTAINER NOTES ALL---------------*/
+
+.notesContainerAll {
+    width:100%;
+    margin-left:20%;
+    height:100vh;
+}
+
+/*-----------NAV BAR---------------*/
+
+.navBarNotes {
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    padding: 0 40px 0 100px;
+}
+    
+    /*Notes Quantity*/
+
+    .navBarNotes .contNotesQty {
+        display:flex;
+        align-items:center;
+        width: 300px;
+    }
+
+        .navBarNotes .contNotesQty .xTimeShowNote {
+            margin-left: 20px;
+        }
+
+            .navBarNotes .contNotesQty .xTimeShowNote .cantNotesPage {
+                border:none;
+                outline:none;
+                background-color: var(--bodyColorLight);
+                font-size: 22px;
+                font-weight: 600;
+            }
+
+
+    /*Search Bar*/
+
+    .navBarNotes .contSearchBar {
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        width: 300px;
+        height: 46px;
+        box-shadow: 0 4px 5px rgba(1,1,1,0.3);
+    }
+        
+        .navBarNotes .contSearchBar .searchBarNote {
+            background-color: #fff;
+            padding: 0 10px;
+            width: 80%;
+            height:100%;
+            text-decoration:none;
+            font-size: 20px;
+            font-weight: 500;
+            color:black;
+            font-family: 'Montserrat', sans-serif;
+            outline:none;
+            border:none;
+        }
+            .navBarNotes .contSearchBar .searchBarNote::placeholder {
+                color:black;
+            }
+            .navBarNotes .contSearchBar .searchBarNote:focus {
+                border: none;
+                outline: none;
+            }
+
+            .navBarNotes .contSearchBar .searchBarNote:after {
+                border: none;
+                outline: none;
+            }
+
+
+        .navBarNotes .contSearchBar .containerSearchIcon {
+            display:flex;
+            justify-content:center;
+            width:20%;
+            height: 100%;
+            background-color:#fff;
+        }
+
+        .navBarNotes .contSearchBar .iconify-inline {
+            height: 100%;
+            font-size: 23px;
+        }
+
+
+/*--------------NOTES---------------*/
+
+.containerNotes {
+    display:grid;
+    grid-template-columns: auto auto auto;
+    width: 1000px;
+    height: calc(100vh - 80px);
+    padding: 50px 0 120px 0;
+    margin-left: 100px;
+    overflow:auto;
+}
+
+.noteBox {
+    position:relative;
+    top:0;
+    width: 260px;
+    height: 260px;
+    background-color: #EBF38B;
+    margin: 15px 0 15px 0;
+    word-break: break-all;
+    transition: .2s ease-in;
+    opacity: 1;
+}
+
+    .noteBox:hover {
+        box-shadow: 0 6px 10px rgba(1,1,1,0.25);
+        top: -6px;
+    }
+
+        .noteBox:hover .noteDelete {
+            display: flex;
+        }
+
+    
+
+    /*Pinned Icon*/
+    .noteBox .notePinned .iconify-inline {
+        font-size: 35px;
+        top: -25px;
+        right: -25px;
+        position: absolute;
+    }
+
+    .noteBox .noteId {
+        display: none;
+    }
+
+    .noteBox .noteTitle {
+        
+        width: 100%;
+        height: 30px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 0 20px 0 20px;
+    }
+
+        .noteBox .noteTitle h2 {
+            text-overflow:ellipsis;
+            overflow:hidden;
+            white-space:nowrap;
+        }
+
+    .noteBox .noteDescr {
+        height: 120px;
+        padding: 0 20px 0 20px;
+        overflow: hidden;
+    }
+
+        .noteBox .noteDescr p {
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+    .noteBox .timeAndDelete {
+        display: flex;
+        height:40px;
+        align-items:center;
+        justify-content:space-between;
+        margin: 20px 20px 0 20px;
+    }
+
+    .noteBox .noteDelete input {
+        display:none;
+    }
+
+        .noteBox .noteDelete:hover .iconify-inline {
+            color: red;
+            font-size: 28px;
+            transition: .3s ease;
+        }
+
+    .noteBox .noteDelete .iconify-inline {
+        font-size: 25px;
+    }
+
+
+    .noteBox .noteSelected {
+        display: none;
+    }
+
+    /*--------------MENU PANEL RIGHT + ADD NOTE---------------*/
+    .addNoteBtn {
+        position: fixed;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        background-color: var(--panelColorLight);
+        right: -150px;
+        bottom: -150px;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .addNoteBtn .containPlusAddNote {
+        display:flex;
+        align-items:center;
+        position:relative;
+        bottom: -100px;
+        right: -70px;
+    }
+
+        .addNoteBtn .containPlusAddNote .iconify-inline {
+            font-size: 50px;
+            color: var(--colorBlue);
+        }
+
+        .addNoteBtn .containPlusAddNote .contTxtAddNote {
+            width: 100px;
+            margin-left: 10px;
+        }
+
+        .addNoteBtn .containPlusAddNote .contTxtAddNote h1 {
+            font-size: 40px;
+            color: var(--colorBlue);
+            font-weight: 300;
+        }
+
+/*Menu Panel Right*/
+
+.containerRightMenu {
+    position:fixed;
+    flex-direction: column;
+    justify-content: center;
+    right:0;
+    top: 100px;
+    width: 300px;
+    height: 600px;
+}
+
+    .containerRightMenu .optionRight {
+        display:flex;
+        position: relative;
+        margin: 20px 0;
+        right: -185px;
+        align-items:center;
+        height: 80px;
+        display: flex;
+        color: #fff;
+        background-color: var(--panelColorLight);
+        
+        transition: .8s;
+    }
+        
+        /*Animation move to left when hovering options note right*/
+        .containerRightMenu .optionRight:hover {
+            right:0;
+        }
+
+
+        .containerRightMenu .optionRight .iconify-inline {
+            font-size: 40px;
+            margin: 0 40px 0 40px;
+        }
+
+/*--------------CREATE NOTE PANEL---------------*/
+
+.containerNotePanel{
+    display:none;
+    position:fixed;
+    top: 100px;
+    right: 0;
+    width: 350px;
+    height:500px;
+    background-color: red;
+    box-shadow: 5px 5px 3px rgba(1, 1, 1, .3);
+    
+}
+
+    .notePanel {
+        width: 85%;
+        height: 100%;
+        background-color: #EBF38B;
+    }
+        
+        /*Animation pin and close Note*/
+
+        .notePanel .contPinAndXPanel {
+            display:flex;
+            height: 5%;
+            width:100%;
+            align-items:center;
+            justify-content:space-between;
+        }
+
+            .notePanel .contPinAndXPanel .closeNoteX .iconify-inline {
+                font-size: 25px;
+            }
+
+                .notePanel .contPinAndXPanel .animationPinNote .iconify-inline {
+                    position:absolute;
+                    transform: rotate(-45deg);
+                    font-size: 35px;
+                    top:-25px;
+                }
+
+        .notePanel #noteIdPanel {
+            display:none;
+        }
+
+        .notePanel .noteTitlePanel {
+            width:100%;
+            height: 15%;
+        }
+
+            .notePanel .noteTitlePanel input {
+                background-color:transparent;
+                border:none;
+                padding: 0 30px 0 30px;
+                width: 100%;
+                height: 100%;
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            .notePanel .noteTitlePanel input:focus {
+                outline:none;
+            }
+
+
+        .notePanel .noteDescrPanel {
+            width: 100%;
+            height: 60%;
+        }
+
+            .notePanel .noteDescrPanel textarea {
+                font-size: 18px;
+                font-weight: 300;
+                background-color: transparent;
+                resize: none;
+                padding: 20px 30px 0 30px;
+                width: 100%;
+                height: 100%;
+                border:none;
+            }
+
+                .notePanel .noteDescrPanel textarea:focus {
+                    outline: none;
+                    border:none;
+                }
+
+    .notePanelOptions {
+        display: flex;
+        align-items: center;
+        justify-content:center;
+        flex-direction: column;
+        width: 15%;
+        height:100%;
+        background-color: var(--panelColorLight);
+    }
+
+        .notePanelOptions .togglePin {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content:center;
+            padding-top: 15px;
+            height: 100px;
+            width: 100%;
+        }
+
+            .notePanelOptions .togglePin .iconify-inline {
+                font-size: 22px;
+                color: var(--bodyColorLight);
+                margin-bottom: 10px;
+            }
+
+            /*SLIDER SWITCH*/
+
+
+            /* The switch - the box around the slider */
+            .switch {
+              position: relative;
+              display: inline-block;
+              width: 40px;
+              height: 25px;
+            }
+
+            /* Hide default HTML checkbox */
+            .switch input {
+              opacity: 0;
+              width: 0;
+              height: 0;
+            }
+
+            /* The slider */
+            .slider {
+              position: absolute;
+              cursor: pointer;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-color: #ccc;
+              -webkit-transition: .4s;
+              transition: .4s;
+            }
+
+            .slider:before {
+              position: absolute;
+              content: "";
+              height: 15px;
+              width: 15px;
+              left: 4px;
+              bottom: 4px;
+              background-color: white;
+              -webkit-transition: .4s;
+              transition: .4s;
+            }
+
+            input:checked + .slider {
+              background-color: #2196F3;
+            }
+
+            input:focus + .slider {
+              box-shadow: 0 0 1px #2196F3;
+            }
+
+            input:checked + .slider:before {
+              -webkit-transform: translateX(15px);
+              -ms-transform: translateX(15px);
+              transform: translateX(15px);
+            }
+
+            /* Rounded sliders */
+            .slider.round {
+              border-radius: 34px;
+            }
+
+            .slider.round:before {
+              border-radius: 50%;
+            }
+
+
+        .notePanelOptions .createBtnPanel {
+            margin-top: 250px;
+            transform: rotate(90deg);
+            width: 90px;
+            height: 35px;
+        }
+
+            .notePanelOptions .createBtnPanel button {
+                height: 100%;
+                width: 100%;
+                background-color: var(--colorBlue);
+                border: none;
+            }
+
+        .notePanelOptions #editBtnPanel{
+            display:none;
+        }
+
+/*--------------BOTTOM VAR---------------*/
+.barBottom {
+    position: fixed;
+    width: 100%;
+    height: 120px;
+    bottom: 0;
+    background-color: var(--bodyColorLight);
+    opacity: .9;
+    box-shadow: 0px 0px 10px 5px rgba(1,1,1,0.3);
+}
