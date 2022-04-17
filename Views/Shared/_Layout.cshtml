@@ -15,32 +15,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="pageContainer">
+    <main class="pageContainer">
 
         <!--  MENU PANEL LEFT  -->
 
-        <div class="panelOptions">
+        <aside class="panelOptions">
             @RenderBody()
-        </div>
+        </aside>
 
-        <div class="notesContainerAll">
+        <section class="notesContainerAll">
 
             <!--  NAV BAR NOTES  -->
 
             <nav class="navBarNotes">
-                <div class="contNotesQty">
-                    <h1>Notes Quantity</h1>
-                    <div class="xTimeShowNote">
-                        <select class="cantNotesPage">
-                            <option value="value">1</option>
-                            <option value="value">2</option>
-                            <option value="value">3</option>
-                            <option value="value">4</option>
-                            <option value="value">5</option>
-                            <option value="value">6</option>
-                        </select>
-                    </div>
-                </div>
 
                 <div class="contSearchBar">
                     <input class="searchBarNote" type="text" name="name" value="" placeholder="Search..." />
@@ -48,6 +35,15 @@
                         <span class="iconify-inline" data-icon="ant-design:search-outlined"></span>
                     </div>
 
+                </div>
+
+                <div class="content__item">
+                    <button class="button button--pandora">
+                        <span id="btnAddNotePanel">
+                            Add note
+                            <span class="iconify-inline" data-icon="ant-design:plus-outlined"></span>
+                        </span>
+                    </button>
                 </div>
             </nav>
 
@@ -72,7 +68,9 @@
                             <div class="noteDelete">
                                 <form method="post">
                                     <input type="text" name="Id" value="@x.Id" />
-                                    <button type="submit" asp-action="DeleteNote">Delete</button>
+                                    <button class="deleteBtnNote" type="submit" asp-action="DeleteNote">
+                                        <span class="iconify" data-icon="ep:delete"></span>
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -80,18 +78,14 @@
                     </div>
                 }
 
+            <div class="contNotesEmpty">
+                <span class="iconify" data-icon="fxemoji:notepad"></span>
+                <p>Your notes list is Empty!</p>
             </div>
 
-        </div><!--End Notes Container ALL-->
-        <!--  MENU OPTIONS RIGHT  -->
-
-        <div class="containerRightMenu">
-            <div class="contDelBtn optionRight">
-                <span class="iconify-inline" data-icon="carbon:delete"></span>
-                <h2>Delete Note</h2>
             </div>
-        </div>
 
+        </section><!--End Notes Container ALL-->
 
         <!--  CREATE NOTE PANEL  -->
 
@@ -100,7 +94,7 @@
 
                 <div class="contPinAndXPanel">
                     <div class="animationPinNote">
-                        <span class="iconify-inline" data-icon="noto:pushpin"></span>
+                        <span id="pinNoteIconPanel" class="iconify-inline" data-icon="noto:pushpin"></span>
                     </div>
 
                     <div id="closeNoteX" class="closeNoteX">
@@ -114,8 +108,14 @@
                     <input id="noteTitle" type="text" name="Title" value="" placeholder="Title..." />
                 </div>
 
+
+
                 <div class="noteDescrPanel">
                     <textarea id="noteDescr" name="Desc" placeholder="Description..."></textarea>
+                </div>
+
+                <div class="noteTimePanel">
+                    <p id="noteTimePanel"></p>
                 </div>
 
             </div>
@@ -140,21 +140,7 @@
             </div>
         </form>
 
-        <!--  ADD NOTE BTN  -->
-
-        <div class="addNoteBtn">
-            <div class="containPlusAddNote">
-                <span class="iconify-inline" data-icon="akar-icons:plus"></span>
-                <div id="contTxtAddNote" class="contTxtAddNote">
-                    <h1>Add Note</h1>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="barBottom"></div>
-
-    </div><!--End Page Container-->
+    </main><!--End Page Container-->
 
 
     <script src="~/js/app.js"></script>

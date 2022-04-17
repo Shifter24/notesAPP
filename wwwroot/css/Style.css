@@ -32,7 +32,7 @@ input:-webkit-autofill:active {
 
 :root {
     /*Colors*/
-    --bodyColorLight: #F7B2AD;
+    --bodyColorLight: #E2A39E;
     --panelColorLight: #212121;
     --colorBlue: #6DAEDB;
 }
@@ -49,6 +49,10 @@ body {
     background-color: var(--bodyColorLight);
 }
 
+a {
+    text-decoration:none;
+}
+
 .pageContainer {
     display:flex;
     position: relative;
@@ -58,7 +62,7 @@ body {
     position: fixed;
     width: 20%;
     height: 100%;
-    background-color: var(--panelColorLight);
+    background-color: #212121;
     z-index: 1;
 }
 
@@ -66,13 +70,12 @@ body {
     width: 100%;
     height: 100px;
     display: flex;
-    padding:0 80px 0 80px;
-    justify-content:space-between;
+    justify-content:center;
     align-items: center;
-    background-color: #333232;
+    background-color: #1A1717;
     color: var(--bodyColorLight);
     border-right: 2px solid var(--bodyColorLight);
-    font-size: 14px;
+    font-size: 18px;
     transition: .5s ease;
 }
 
@@ -80,6 +83,11 @@ body {
         border-right: 6px solid var(--bodyColorLight);
         background-color: #101010;
         color: white;
+    }
+
+    .btnPanel h1 {
+        font-weight: 500;
+        width: 150px;
     }
 
 .activeBtn {
@@ -92,10 +100,9 @@ body {
     width: 100%;
     height: 150px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    padding: 0 10% 0 10%;
-    font-size:15px;
+    font-size:16px;
     color: #FFFFFF;
 }
     .profileImg {
@@ -108,7 +115,8 @@ body {
     }
 
         .profileInfo h1 {
-            font-weight: 400;
+            width: 150px;
+            font-weight: 500;
         }
 
 
@@ -117,19 +125,23 @@ body {
 }
 
     .myNotes i {
-        font-size:2rem;
+        margin-right:20px;
+        font-size:2.4rem;
     }
 
 .pinned {
     margin-bottom: 30px;
 }
 
-    .pinned i {
-        font-size:2rem;
+    .pinned .iconify {
+        margin-right: 20px;
+        font-size: 2.4rem;
     }
 
+
 .journal .iconify-inline {
-    font-size: 2.6rem;
+    margin-right: 20px;
+    font-size: 2.8rem;
 }
 
 .settings {
@@ -137,7 +149,8 @@ body {
 }
 
     .settings .iconify-inline {
-        font-size:2rem;
+        margin-right: 20px;
+        font-size: 2.5rem;
     }
 
 /*-----------CONTAINER NOTES ALL---------------*/
@@ -152,33 +165,12 @@ body {
 
 .navBarNotes {
     display:flex;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 80px;
-    padding: 0 40px 0 100px;
+    height: 100px;
+    padding: 0 100px 0 100px;
 }
-    
-    /*Notes Quantity*/
-
-    .navBarNotes .contNotesQty {
-        display:flex;
-        align-items:center;
-        width: 300px;
-    }
-
-        .navBarNotes .contNotesQty .xTimeShowNote {
-            margin-left: 20px;
-        }
-
-            .navBarNotes .contNotesQty .xTimeShowNote .cantNotesPage {
-                border:none;
-                outline:none;
-                background-color: var(--bodyColorLight);
-                font-size: 22px;
-                font-weight: 600;
-            }
-
 
     /*Search Bar*/
 
@@ -192,20 +184,20 @@ body {
     }
         
         .navBarNotes .contSearchBar .searchBarNote {
-            background-color: #fff;
-            padding: 0 10px;
+            background-color: black;
+            padding: 0 26px;
             width: 80%;
             height:100%;
             text-decoration:none;
-            font-size: 20px;
-            font-weight: 500;
-            color:black;
+            font-size: 18px;
+            font-weight: 300;
+            color:white;
             font-family: 'Montserrat', sans-serif;
             outline:none;
             border:none;
         }
             .navBarNotes .contSearchBar .searchBarNote::placeholder {
-                color:black;
+                color:white;
             }
             .navBarNotes .contSearchBar .searchBarNote:focus {
                 border: none;
@@ -219,11 +211,12 @@ body {
 
 
         .navBarNotes .contSearchBar .containerSearchIcon {
-            display:flex;
-            justify-content:center;
-            width:20%;
+            display: flex;
+            justify-content: center;
+            width: 20%;
             height: 100%;
-            background-color:#fff;
+            background-color: black;
+            color:white;
         }
 
         .navBarNotes .contSearchBar .iconify-inline {
@@ -232,46 +225,66 @@ body {
         }
 
 
+        /*Button add note*/
+
+    .button--pandora {
+        background: #212121;
+        font-size: 16px;
+        font-weight: 300;
+        padding: 0;
+        border-radius: 5px;
+    }
+
+    .button--pandora span {
+        display: block;
+        color:white;
+        background: black;
+        padding: 1.5rem 2rem;
+        border: 1px solid #000;
+        border-radius: 5px;
+        transform: translate3d(-4px, -4px, 0);
+        transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+    }
+
+        .button--pandora:hover span {
+	        transform: translate3d(-6px, -6px, 0);
+        }
+
+
 /*--------------NOTES---------------*/
 
 .containerNotes {
     display:grid;
-    grid-template-columns: auto auto auto;
-    width: 1000px;
-    height: calc(100vh - 80px);
-    padding: 50px 0 120px 0;
-    margin-left: 100px;
+    grid-template-columns: auto auto auto auto;
+    width: calc(100% - 100px);
+    height: calc(100vh - 100px);
+    padding: 50px 0 120px 10px;
+    margin-left: 90px;
     overflow:auto;
 }
 
 .noteBox {
-    position:relative;
-    top:0;
+    position: relative;
+    top: 0;
     width: 260px;
     height: 260px;
     background-color: #EBF38B;
     margin: 15px 0 15px 0;
     word-break: break-all;
+    box-shadow: 0 6px 10px rgba(1,1,1,0.25);
     transition: .2s ease-in;
     opacity: 1;
 }
 
     .noteBox:hover {
-        box-shadow: 0 6px 10px rgba(1,1,1,0.25);
         top: -6px;
     }
 
-        .noteBox:hover .noteDelete {
-            display: flex;
-        }
-
-    
-
     /*Pinned Icon*/
     .noteBox .notePinned .iconify-inline {
-        font-size: 35px;
-        top: -25px;
-        right: -25px;
+        font-size: 32px;
+        top: -22px;
+        right: -22px;
         position: absolute;
     }
 
@@ -317,19 +330,51 @@ body {
         display:none;
     }
 
-        .noteBox .noteDelete:hover .iconify-inline {
-            color: red;
-            font-size: 28px;
-            transition: .3s ease;
-        }
-
-    .noteBox .noteDelete .iconify-inline {
-        font-size: 25px;
+    .noteBox .deleteBtnNote {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        background-color: #EBF38B;
+        outline: 1px solid #EF5252;
     }
 
+        .noteBox .deleteBtnNote:hover {
+            outline: 2px solid #EF5252;
+        }
+
+        .noteBox .deleteBtnNote .iconify {
+            font-size: 20px;
+            color: #EF5252;
+        }
 
     .noteBox .noteSelected {
         display: none;
+    }
+
+
+    /*Notes empty*/
+
+.contNotesEmpty {
+    display: none;
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    align-self:center;
+}
+
+    .contNotesEmpty .iconify {
+        font-size: 200px;
+        margin-bottom: 50px;
+        color: red;
+    }
+
+    .contNotesEmpty p {
+        font-size: 32px;
     }
 
     /*--------------MENU PANEL RIGHT + ADD NOTE---------------*/
@@ -413,9 +458,8 @@ body {
     position:fixed;
     top: 100px;
     right: 0;
-    width: 350px;
-    height:500px;
-    background-color: red;
+    width: 400px;
+    height:550px;
     box-shadow: 5px 5px 3px rgba(1, 1, 1, .3);
     
 }
@@ -440,11 +484,22 @@ body {
                 font-size: 25px;
             }
 
+            .notePanel .contPinAndXPanel::before {
+                content: "";
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                margin:7px;
+                background-color: var(--bodyColorLight);
+            }
+
                 .notePanel .contPinAndXPanel .animationPinNote .iconify-inline {
                     position:absolute;
                     transform: rotate(-45deg);
                     font-size: 35px;
                     top:-25px;
+                    transition: 1s ease;
                 }
 
         .notePanel #noteIdPanel {
@@ -492,10 +547,18 @@ body {
                     border:none;
                 }
 
+        .notePanel .noteTimePanel {
+            display:flex;
+            align-items:center;
+            margin-top: 20px;
+            padding-left: 30px;
+            width: 100%;
+            height:40px;
+        }
     .notePanelOptions {
         display: flex;
         align-items: center;
-        justify-content:center;
+        justify-content:end;
         flex-direction: column;
         width: 15%;
         height:100%;
@@ -586,7 +649,7 @@ body {
 
 
         .notePanelOptions .createBtnPanel {
-            margin-top: 250px;
+            margin: 50px;
             transform: rotate(90deg);
             width: 90px;
             height: 35px;
@@ -602,14 +665,3 @@ body {
         .notePanelOptions #editBtnPanel{
             display:none;
         }
-
-/*--------------BOTTOM VAR---------------*/
-.barBottom {
-    position: fixed;
-    width: 100%;
-    height: 120px;
-    bottom: 0;
-    background-color: var(--bodyColorLight);
-    opacity: .9;
-    box-shadow: 0px 0px 10px 5px rgba(1,1,1,0.3);
-}
