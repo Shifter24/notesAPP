@@ -1,6 +1,6 @@
 # NotesAPP
 
-App for creating daily tasks notes.(i'm still improving it to make it better)
+App for creating daily tasks notes.
 
 Software used to create this app
 
@@ -15,9 +15,7 @@ BACKEND
 - SQL Server for creating DB
 - C# along with MVC design pattern
 
-In this moment you can do CREATE, EDIT and DELETE, and also PIN your important notes and see them.
-
-In the future i will be adding functionality.
+At this moment you can do CREATE, EDIT and DELETE, and also PIN your important notes and see them.
 
 -------EXAMPLES-------
 
